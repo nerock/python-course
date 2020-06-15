@@ -17,7 +17,7 @@ def definition(word):
     word = word.lower()
     if word in definitions:
         definition = definitions[word]
-        
+
         return format_definitions(definition)
 
     error = "Please check the spelling."
@@ -28,5 +28,7 @@ def definition(word):
 
     return f"The word doesn't exist. {error}"
 
-word = input("Enter word: ")
-print(definition(word))
+print("English dictionary. Press CTRL+C to exit.")
+while True:
+    word = input("Enter word: ")
+    print(definition(word))
