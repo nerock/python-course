@@ -1,9 +1,12 @@
 import json
 
-data = json.load(open("data.json"))
+definitions = json.load(open("data.json"))
 
 def definition(word):
-    return data[word]
+    if word in definitions:
+        return definitions[word]
+
+    return "The word doesn't exists. Please check the spelling."
 
 word = input("Enter word: ")
 print(definition(word))
