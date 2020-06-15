@@ -3,15 +3,22 @@ from difflib import get_close_matches
 
 definitions = json.load(open("data.json"))
 
+def format_definitions(definition_list):
+    if type(definition_list) != list:
+        return definition_list
+
+    res = ""
+    for i, d in enumerate(definition_list, 1):
+        res += f"{i}: {d}\n"
+
+    return res
+
 def definition(word):
     word = word.lower()
     if word in definitions:
         definition = definitions[word]
-
-        if type(definition) == list:
-            definition = " ".join(definition)
-
-        return definition
+        
+        return format_definitions(definition)
 
     error = "Please check the spelling."
     close_matches = get_close_matches(word, definitions.keys())
