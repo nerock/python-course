@@ -34,6 +34,9 @@ def volcanoes(data):
         fg.add_child(folium.Marker(location=[lt, ln], popup=popup, icon=folium.Icon(color=color_producer(el))))
         map.add_child(fg)
 
+    world = open("world.json", "r", encoding="utf-8-sig").read()
+    fg.add_child(folium.GeoJson(data=(world)))
+
     map.save("volcanoes.html")
 
 valencia_map()
