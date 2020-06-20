@@ -1,4 +1,7 @@
 import folium
+import pandas
+
+data = pandas.read_csv("volcanoes.csv")
 
 def valencia_map():
     map = folium.Map(location=[39.47, -0.32], zoom_start=14, tiles="Stamen Terrain")
