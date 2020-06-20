@@ -12,6 +12,14 @@ def valencia_map():
 
     map.save("valencia.html")
 
+def color_producer(elevation):
+    if elevation < 1000:
+        return "green"
+    elif elevation < 3000:
+        return "orange"
+    else:
+        return "red"
+
 def volcanoes(data):
     name = list(data["NAME"])
     lat = list(data["LAT"])
@@ -23,7 +31,7 @@ def volcanoes(data):
     fg = folium.FeatureGroup(name="Volcanoes")
     for n, lt, ln, el in zip(name, lat, lon, elev):
         popup = f"{n}. {el} m."
-        fg.add_child(folium.Marker(location=[lt, ln], popup=popup, icon=folium.Icon(color='green')))
+        fg.add_child(folium.Marker(location=[lt, ln], popup=popup, icon=folium.Icon(color=color_producer(el))))
         map.add_child(fg)
 
     map.save("volcanoes.html")
