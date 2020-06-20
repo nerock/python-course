@@ -16,12 +16,14 @@ def volcanoes(data):
     name = list(data["NAME"])
     lat = list(data["LAT"])
     lon = list(data["LON"])
+    elev = list(data["ELEV"])
 
     map = folium.Map(location=[38.20, -120.77], zoom_start=6, tiles="Stamen Terrain")
 
     fg = folium.FeatureGroup(name="Volcanoes")
-    for n, lt, ln in zip(name, lat, lon):
-        fg.add_child(folium.Marker(location=[lt, ln], popup=n, icon=folium.Icon(color='green')))
+    for n, lt, ln, el in zip(name, lat, lon, elev):
+        popup = f"{n}. {el} m."
+        fg.add_child(folium.Marker(location=[lt, ln], popup=popup, icon=folium.Icon(color='green')))
         map.add_child(fg)
 
     map.save("volcanoes.html")
